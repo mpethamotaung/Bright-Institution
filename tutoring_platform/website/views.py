@@ -20,3 +20,6 @@ def resources(request):
 
 def signup(request):
     return render(request, 'signup.html', {})
+
+def student_profile(request):
+    return render(request,'student_profile',{})
