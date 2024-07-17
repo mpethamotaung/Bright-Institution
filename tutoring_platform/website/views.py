@@ -8,3 +8,6 @@ def about(request):
 
 def booking(request):
     return render(request, 'booking.html', {})
+
+def courses(request):
+    return render(request, 'courses.html',{})
