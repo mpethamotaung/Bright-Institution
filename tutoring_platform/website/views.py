@@ -4,7 +4,7 @@ def index(request):
     return render(request, 'index.html', {})
 
 def about(request):
-    return render(request, 'about.html', {})
+    return render(request, 'about.html',{})
 
 def booking(request):
     return render(request, 'booking.html', {})
@@ -26,3 +26,6 @@ def student_profile(request):
 
 def tutor_profile(request):
     return render(request, 'tutor_profile', {})
+
+def tutors(request):
+    return render(request, 'tutors.html', {})
