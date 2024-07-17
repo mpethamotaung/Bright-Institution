@@ -23,3 +23,6 @@ def signup(request):
 
 def student_profile(request):
     return render(request,'student_profile',{})
+
+def tutor_profile(request):
+    return render(request, 'tutor_profile', {})
