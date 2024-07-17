@@ -11,3 +11,6 @@ def booking(request):
 
 def courses(request):
     return render(request, 'courses.html',{})
+
+def pricing(request):
+    return render(request, 'pricing.html',{})
