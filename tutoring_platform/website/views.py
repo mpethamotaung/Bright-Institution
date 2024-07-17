@@ -14,3 +14,6 @@ def courses(request):
 
 def pricing(request):
     return render(request, 'pricing.html',{})
+
+def resources(request):
+    return render(request, 'resources.html',{})
