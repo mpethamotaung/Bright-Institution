@@ -30,7 +30,7 @@
 <body>
     <!-- Start: Navbar Centered Links -->
     <nav class="navbar navbar-expand-md bg-body py-3">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><img src="{% static 'website/img/clipboard-image-22.png'%}" width="44" height="36"></span><span style="font-size: 30px;font-weight: bold;">BMSI</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><img src="{% static 'website/img/clipboard-image-22.png' %}" width="44" height="36"></span><span style="font-size: 30px;font-weight: bold; padding-left: 10px;"> BMSI</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-3">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
@@ -58,8 +58,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-4 footer-navigation">
                 <h3><a href="index.html" style="font-family: 'Noto Sans Syriac Eastern', sans-serif;">BMSI</a></h3>
-                <p class="links"><a href="index.html">Home</a><strong> · </strong><a href="tutors.html">Tutors</a><strong> · </strong><a href="booking.html">Booking</a><strong> · </strong><a href="courses.html">Courses</a><strong> · </strong><a href="pricing.html">Pricing</a><strong> · </strong><a href="resources.html">Resources</a><strong>&nbsp;·&nbsp;</strong><a href="About.html">About us</a><br><br></p>
-                <p class="company-name">BMSI © 2024</p>
+                <p class="links"><a href="{% url 'index' %}">Home</a><strong> · </strong><a href="{% url 'tutors' %}">Tutors</a><strong> · </strong><a href="{% url 'booking' %}">Booking</a><strong> · </strong><a href="{% url 'courses' %}">Courses</a><strong> · </strong><a href="{% url 'pricing' %}">Pricing</a><strong> · </strong><a href="{% url 'resources' %}">Resources</a><strong>&nbsp;·&nbsp;</strong><a href="{% url 'about' %}">About us</a><br><br></p>                <p class="company-name">BMSI © 2024</p>
             </div>
             <div class="col-sm-6 col-md-4 footer-contacts">
                 <div><span class="fa fa-map-marker footer-contacts-icon"> </span>
