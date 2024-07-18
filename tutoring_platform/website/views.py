@@ -18,7 +18,7 @@ def pricing(request):
 def resources(request):
     return render(request, 'resources.html',{})
 
-def singup(request):
+def signup(request):
     return render(request, 'signup.html',{})
 
 def student_profile(request):

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 
@@ -33,7 +34,7 @@
                     </svg><img src="assets/img/clipboard-image-22.png" width="44" height="36"></span><span style="font-size: 30px;font-weight: bold;">BMSI</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-3">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="tutors.html">Tutors</a></li>
                     <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
                     <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
