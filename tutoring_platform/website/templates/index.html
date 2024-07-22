@@ -41,8 +41,14 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'resources' %}">Resources</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                 </ul>
-                <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(27,75,175);padding: 6px 12px;margin: 9px;border-top-color: rgb(27,75,175);">Login</button>
-                <button class="btn btn-primary" type="button" style="background: rgb(27,75,175);">Get Started</button>
+                <a href="{% url 'login' %}">
+                    <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(27,75,175);padding: 6px 12px;margin: 9px;border-top-color: rgb(27,75,175);">Login</button>
+                </a>
+                <a href="{% url 'register' %}">
+                    <button class="btn btn-primary" type="button" style="background: rgb(27,75,175);">Get Started</button>
+                </a>
+                
+                
             </div>
         </div>
     </nav><!-- End: Navbar Centered Links -->
