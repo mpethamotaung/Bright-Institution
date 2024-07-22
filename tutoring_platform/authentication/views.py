@@ -24,3 +24,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'authentication/login.html', {'form': form})
+
+@login_required
+def dashboard_view(request):
+    return render(request, 'authentication/dashboard.html')
