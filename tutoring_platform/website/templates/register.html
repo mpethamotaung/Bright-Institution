@@ -1,20 +1,16 @@
-{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMSI</title>
+    <title>Register</title>
+    <!-- Include Bootstrap CSS or your CSS -->
 </head>
 <body>
-    <div>
-        <h2>Register</h2>
-        <form method="post">
+    <h2>Register</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Register</button>
-        </form>
-    </div>
-    
+    </form>
+    <a href="{% url 'login' %}">Already have an account? Log in here.</a>
 </body>
 </html>
