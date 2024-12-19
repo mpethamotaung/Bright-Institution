@@ -1,0 +1,78 @@
+{% load static %}
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sign up for your BMSI account as a student">
+    <title>Student Signup | BMSI</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Main content -->
+    <main>
+        <!-- Sign Up Section -->
+        <section class="signup-section">
+            <div class="signup-container">
+                <h2>Create your Student Account</h2>
+                <p>Join our community and get started with personalized learning as a student.</p>
+
+                <!-- Display messages -->
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Student Sign Up Form -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password1|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2|as_crispy_field }}
+                    </div>
+
+                    <!-- Grade and Subjects Fields -->
+                    <div class="form-group">
+                        {{ form.grade|as_crispy_field }}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="cta-button">Sign Up</button>
+                    </div>
+
+                    <div class="form-links">
+                        <a href="{% url 'users:login' %}" class="forgot-link">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-bottom">
+            <p>&copy; BMSI 2024. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include JS -->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

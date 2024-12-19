@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | BMSI</title>
+    <meta name="description" content="Login to your BMSI account">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Main content -->
+    <main>
+        <!-- Login Section -->
+        <section class="login-section">
+            <div class="login-container">
+                <h2>Login to BMSI</h2>
+                <p>Access your account and get started with learning.</p>
+
+                <!-- Display messages (such as success or error messages from other actions) -->
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Display form errors -->
+                <form method="post" action="{% url 'users:login' %}">
+                    {% csrf_token %}
+
+                    <!-- Non-field errors (like "Incorrect credentials") -->
+                    {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        <ul>
+                            {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Username or Email -->
+                    <div class="form-group">
+                        <label for="username">Username or Email</label>
+                        <input type="text" name="username" id="username" required placeholder="Enter your username or email" value="{{ form.username.value|default_if_none:'' }}">
+                        <!-- Display errors related to the 'username' field -->
+                        {% if form.username.errors %}
+                        <div class="form-errors">
+                            <ul>
+                                {% for error in form.username.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" required placeholder="Enter your password">
+                        <!-- Display errors related to the 'password' field -->
+                        {% if form.password.errors %}
+                        <div class="form-errors">
+                            <ul>
+                                {% for error in form.password.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="form-group">
+                        <button type="submit" class="cta-button">Login</button>
+                    </div>
+
+                    <!-- Links for forgotten password and sign-up -->
+                    <div class="form-links">
+                        <a href="{% url 'password_reset' %}" class="forgot-link">Forgot password?</a>
+                        <a href="{% url 'users:student_signup' %}" class="signup-link">Sign Up as a Student</a>
+                        <a href="{% url 'users:tutor_signup' %}" class="signup-link">Sign Up as a Tutor</a>
+                        <a href=""></a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-bottom">
+            <p>&copy; BMSI 2024. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--Include JS-->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

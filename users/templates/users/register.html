@@ -1,0 +1,134 @@
+{% load static %}
+{% load crispy_forms_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sign up for your BMSI account">
+    <title>Sign Up | BMSI</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Main content -->
+    <main>
+        <!-- Sign Up Section -->
+        <section class="signup-section">
+            <div class="signup-container">
+                <h2>Create your BMSI Account</h2>
+                <p>Join our community and get started with personalized learning.</p>
+
+                <!-- Display messages -->
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <!-- Sign Up Form -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.first_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.last_name|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password1|as_crispy_field }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.password2|as_crispy_field }}
+                    </div>
+
+                    <!-- Role Selection (Radio buttons) -->
+                    <div class="form-group">
+                        <label>Role:</label><br>
+                        <label>
+                            <input type="radio" name="role" id="role_student" value="Student"> Student
+                        </label><br>
+                        <label>
+                            <input type="radio" name="role" id="role_tutor" value="Tutor"> Tutor
+                        </label>
+                    </div>
+
+                    <!-- Grade and Subjects Fields, initially hidden -->
+                    <div id="grade-field" class="hidden">
+                        {{ form.grade|as_crispy_field }}
+                    </div>
+
+                    <div id="subjects-field" class="hidden">
+                        {{ form.subjects|as_crispy_field }}
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="cta-button">Sign Up</button>
+                    </div>
+
+                    <div class="form-links">
+                        <a href="{% url 'users:login' %}" class="forgot-link">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-bottom">
+            <p>&copy; BMSI 2024. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include JS -->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+
+    <!-- Inline JavaScript to handle toggle functionality -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const studentRadio = document.getElementById("role_student");
+            const tutorRadio = document.getElementById("role_tutor");
+            const gradeField = document.getElementById("grade-field");
+            const subjectsField = document.getElementById("subjects-field");
+
+            // Function to toggle fields based on role selection
+            function toggleFields() {
+                if (studentRadio.checked) {
+                    // Show grade and subjects fields if "Student" is selected
+                    gradeField.classList.remove('hidden');
+                    subjectsField.classList.remove('hidden');
+                } else {
+                    // Hide grade and subjects fields if "Tutor" is selected
+                    gradeField.classList.add('hidden');
+                    subjectsField.classList.add('hidden');
+                }
+            }
+
+            // Add event listeners to radio buttons to trigger the toggle
+            studentRadio.addEventListener("change", toggleFields);
+            tutorRadio.addEventListener("change", toggleFields);
+
+            // Call toggleFields initially to set the correct visibility based on pre-selected value
+            toggleFields();
+        });
+    </script>
+
+    <!-- CSS to ensure the fields are hidden but functional -->
+    <style>
+        .hidden {
+            visibility: hidden;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</body>
+</html>

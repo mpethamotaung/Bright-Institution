@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us - BMSI</title>
+    <meta name="description" content="Learn more about BMSI and our vision, mission, and offerings.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!--Header Content-->
+    <header>
+        <nav class="navbar">
+            <!-- Brand Container (Always Visible) -->
+            <div class="brand-container">
+                <img src="{% static 'images/logo.png' %}" alt="BMSI Logo" class="logo">
+                <h1><a href="{% url 'pages:index' %}" class="brand-name">BMSI</a></h1>
+            </div>
+
+            <!-- Navbar Toggler (For Small Screens) -->
+            <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle Navigation">
+                &#9776; 
+            </button>
+
+            <!-- All Nav Links (Center + Right Combined) -->
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <!-- Center Nav Links + Auth Links -->
+                    <li><a href="{% url 'pages:pricing' %}" class="nav-link">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}" class="nav-link">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}" class="nav-link">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}" class="nav-link">About Us</a></li>
+                    
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" class="profile-link">Profile</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn-link logout-link">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li><a href="/users/login/" class="login-link">Login</a></li>
+                    <li><a href="{% url 'users:signup_selection' %}" class="get-started-link">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <!-- Commercial Explanation Section -->
+        <section class="about-us">
+            <div class="about-container">
+                <h2>About Us</h2>
+                <p>Bright Maths and Science Institution (BMSI) is a dedicated tutoring service specializing in mathematics and science-based subjects for students in Grade 7 through Grade 12. Established with a singular focus on fostering academic excellence, BMSI is committed to equipping students with the knowledge and skills necessary for success in their academic pursuits and life journeys.</p>
+                
+                <h2>Vision and Mission</h2>
+                <p>Our vision and mission are to provide exceptional mathematical and scientific tutoring services that go beyond academic excellence. We aim to create a nurturing and supportive learning environment where students not only develop a strong foundation in mathematics and science but also learn the value of giving back and helping others. By fostering a spirit of generosity, empathy, and selflessness, we strive to empower our students to make a positive impact on their communities and honor their parents through their academic achievements.</p>
+                <blockquote>"Our mission is strongly based on Hebrews 13:16"</blockquote>
+
+                <h2>Our Product</h2>
+                <p>BMSI offers highly personalized tutoring services that cater to the individual needs of students in Grade 7 through Grade 12. Our tutoring services encompass a range of features:</p>
+                <ul>
+                    <li>One-on-One or Group Tutoring</li>
+                    <li>Comprehensive Subject Coverage</li>
+                    <li>Experienced Tutors</li>
+                    <li>Customized Learning Plans</li>
+                    <li>Exam Preparation</li>
+                    <li>Homework Help</li>
+                    <li>Real-World Application</li>
+                    <li>Holistic Skill Development</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Commercial Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@bmsi.com">brightmathsinstitute@gmail.com</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-whatsapp"> 069 855 0845</i></a>
+                </div>
+                <p>Address: 123 Education Lane, Learning City, Knowledge State</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'pages:index' %}">Home</a></li>
+                    <li><a href="{% url 'pages:pricing' %}">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe</h3>
+                <form action="#">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BMSI. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!--Include JS-->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

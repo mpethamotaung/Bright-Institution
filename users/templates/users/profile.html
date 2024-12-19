@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card" style="width: 400px;">
+        <div class="card-body text-center">
+            <img src="{{ user.student_profile.profile_picture.url }}" alt="Profile Picture" class="rounded-circle mb-3" style="width: 150px; height: 150px;">
+            <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+            <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="card-text"><strong>Bio:</strong> {{ user.student_profile.bio }}</p>
+            <a href="#" class="btn btn-primary">Edit Profile</a>
+        </div>
+    </div>
+</div>
+
+<!-- Back Button to Dashboard -->
+<div class="container mt-3 d-flex justify-content-center">
+    <a href="{% url 'users:dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+{% endblock %}

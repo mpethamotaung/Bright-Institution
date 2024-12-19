@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}BMSI | Form{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="brand-container">
+                <img src="{% static 'images/logo.png' %}" alt="BMSI Logo" class="logo">
+                <h1><a href="{% url 'pages:index' %}" class="brand-name">BMSI</a></h1>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="form-section">
+            <div class="form-container">
+                <h2>{% block heading %}Form Page{% endblock %}</h2>
+                <p>{% block message %}Form Message{% endblock %}</p>
+
+                {% block form %}
+                <!-- Form goes here -->
+                {% endblock %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BMSI. All rights reserved.</p>
+    </footer>
+</body>
+</html>

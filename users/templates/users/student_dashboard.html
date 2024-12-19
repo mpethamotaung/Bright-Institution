@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Student Dashboard | BMSI</title>
+    <meta name="description" content="Manage your courses, schedule, and more.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Main content -->
+    <main>
+        <!-- Dashboard Header -->
+        <section class="dashboard-header">
+            <div class="dashboard-header-container">
+                <div class="header-content">
+                    <h1 class="dashboard-title">Student Dashboard</h1>
+                    <p class="dashboard-subtitle">Manage your courses, schedule, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Body -->
+        <div class="dashboard-body">
+            <div class="dashboard-container">
+                <!-- Sidebar Section -->
+                <nav class="sidebar">
+                    <div class="sidebar-menu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#" data-section="overview">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span class="link-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#" data-section="profile">
+                                    <i class="fas fa-user"></i>
+                                    <span class="link-text">Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn-link logout-link">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span class="link-text">Logout</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Main Dashboard Content -->
+                <div class="dashboard-content">
+                    <!-- Overview Section -->
+                    <section id="overview" class="dashboard-section">
+                        <h2 class="content-title">Overview</h2>
+                        <div class="overview-cards">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Courses</h5>
+                                    <p class="card-text">4</p>
+                                    <a href="#" class="cta-button small-button">View Courses</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Upcoming Classes</h5>
+                                    <p class="card-text">2 this week</p>
+                                    <a href="#" class="cta-button small-button">View Schedule</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Messages</h5>
+                                    <p class="card-text">1 new message</p>
+                                    <a href="#" class="cta-button small-button">View Messages</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Profile Section (Hidden by default) -->
+                    <section id="profile" class="dashboard-section" style="display: none;">
+                        <h2 class="content-title">Profile</h2>
+                        <form method="POST" enctype="multipart/form-data" action="{% url 'users:update_profile' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="first_name">First Name:</label>
+                                <input type="text" id="first_name" name="first_name" value="{{ user_form.first_name.value }}" required>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="last_name">Last Name:</label>
+                                <input type="text" id="last_name" name="last_name" value="{{ user_form.last_name.value }}" required>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" value="{{ user_form.email.value }}" required>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="text" id="phone" name="phone" value="{{ profile_form.phone.value }}" required>
+                            </div>
+                        
+                            <button type="submit" class="cta-button small-button">Update Profile</button>
+                        </form>                        
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Include JS -->
+    <script>
+        // JavaScript to switch between sections
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Hide all sections
+                document.querySelectorAll('.dashboard-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the clicked section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).style.display = 'block';
+            });
+        });
+
+        // Initially show the overview section
+        document.getElementById('overview').style.display = 'block';
+    </script>
+
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

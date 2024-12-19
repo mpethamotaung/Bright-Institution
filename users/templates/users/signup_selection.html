@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Select your role to sign up for BMSI">
+    <title>Sign Up Selection | BMSI</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <!-- Main content -->
+    <main>
+        <!-- Hero Section for Sign-Up Selection -->
+        <section class="signup-selection-hero">
+            <div class="overlay"></div>
+            <div class="signup-selection-container">
+                <h2 class="hero-title">Join the BMSI Learning Community</h2>
+                <p class="hero-subtitle">Unlock your potential with expert tutoring or start empowering students as a tutor!</p>
+                
+                <div class="signup-options">
+                    <a href="{% url 'users:student_signup' %}" class="cta-button student-button">
+                        <i class="fas fa-user-graduate"></i> Sign Up as Student
+                    </a>
+                    <a href="{% url 'users:tutor_signup' %}" class="cta-button tutor-button">
+                        <i class="fas fa-chalkboard-teacher"></i> Sign Up as Tutor
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-bottom">
+            <p>&copy; BMSI 2024. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--Include JS-->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

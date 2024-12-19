@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Manage your tutoring, schedule, and more.">
+    <title>Tutor Dashboard | BMSI</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!-- Main content -->
+    <main>
+        <!-- Dashboard Header -->
+        <section class="dashboard-header">
+            <div class="dashboard-header-container">
+                <div class="header-content">
+                    <!-- Display the full name of the user -->
+                    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+                    <!-- Change Tutor Dashboard to h3 -->
+                    <h3 class="dashboard-title">Tutor Dashboard</h3>
+                    <p class="dashboard-subtitle">Manage your tutoring sessions, schedule, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Body -->
+        <div class="dashboard-body">
+            <div class="dashboard-container">
+                <!-- Sidebar Section -->
+                <nav class="sidebar">
+                    <div class="sidebar-menu">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#" data-section="overview">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span class="link-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#" data-section="profile">
+                                    <i class="fas fa-user"></i>
+                                    <span class="link-text">Profile</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn-link logout-link">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        <span class="link-text">Logout</span>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Main Dashboard Content -->
+                <div class="dashboard-content">
+                    <!-- Overview Section -->
+                    <section id="overview" class="dashboard-section">
+                        <h2 class="content-title">Overview</h2>
+
+                        <!-- Overview Cards -->
+                        <div class="overview-cards">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Students</h5>
+                                    <p class="card-text">12</p>
+                                    <a href="#" class="cta-button small-button">View Students</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Upcoming Classes</h5>
+                                    <p class="card-text">5 this week</p>
+                                    <a href="#" class="cta-button small-button">View Schedule</a>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">New Messages</h5>
+                                    <p class="card-text">3 unread messages</p>
+                                    <a href="#" class="cta-button small-button">View Messages</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Welcome to your tutor dashboard! Here you can manage your students, track your schedule, and more.</p>
+                    </section>
+
+                    <!-- Profile Section -->
+<section id="profile" class="dashboard-section" style="display: none;">
+    <h2 class="content-title">Profile</h2>
+
+    <!-- Display Profile Picture -->
+    <div class="profile-picture-container">
+        {% if user.profile_picture %}
+            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="rounded-circle profile-pic">
+        {% else %}
+            <img src="{% static 'images/default.png' %}" alt="Default Profile Picture" class="rounded-circle profile-pic">
+        {% endif %}
+        <button class="edit-profile-pic-btn" onclick="toggleEditProfilePic()">
+            <i class="fas fa-pencil-alt"></i>
+        </button>
+    </div>
+
+    <!-- Edit Profile Picture (Initially Hidden) -->
+    <div class="edit-profile-picture-form" style="display: none;">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'users:student_dashboard' %}?section=profile">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+            </div>
+            <button type="submit" class="cta-button small-button">Update Profile Picture</button>
+        </form>
+    </div>
+
+    <!-- Other Profile Details -->
+    <form method="POST" action="{% url 'users:student_dashboard' %}?section=profile">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+
+        <button type="submit" class="cta-button small-button">Update Profile</button>
+    </form>
+</section>
+
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript to switch between sections -->
+    <script>
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Hide all sections
+                document.querySelectorAll('.dashboard-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                // Show the clicked section
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).style.display = 'block';
+            });
+        });
+
+        // Initially show the overview section
+        document.getElementById('overview').style.display = 'block';
+
+        //Toggle the profile pic edit state
+        function toggleEditProfilePic() {
+        const form = document.querySelector('.edit-profile-picture-form');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+
+    <!-- Include JS -->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How to book your first session with BMSI tutors">
+    <title>How to Book a Tutor | BMSI</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!--Header Content-->
+    <header>
+        <nav class="navbar">
+            <div class="brand-container">
+                <img src="{% static 'images/logo.png' %}" alt="BMSI Logo" class="logo">
+                <h1><a href="{% url 'pages:index' %}" class="brand-name">BMSI</a></h1>
+            </div>
+    
+            <!-- Navbar Toggler (For Small Screens) -->
+            <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle Navigation">
+                &#9776; 
+            </button>
+    
+            <!-- Nav Links -->
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="{% url 'pages:pricing' %}" class="nav-link">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}" class="nav-link">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}" class="nav-link">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}" class="nav-link">About Us</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" class="profile-link">Dashboard</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn-link logout-link">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li><a href="/users/login/" class="login-link">Login</a></li>
+                    <li><a href="{% url 'users:signup_selection' %}" class="get-started-link">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="booking-hero">
+            <div class="booking-hero-container">
+                <h1>How to Book a Tutor at BMSI</h1>
+                <p>Follow these simple steps to start your learning journey with us!</p>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Section -->
+<section class="steps-section">
+    <div class="steps-container">
+        <h2 class="steps-heading">Start Learning in 5 Simple Steps</h2>
+
+        <div class="steps-grid">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-card-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="step-card-details">
+                    <h3>1. Sign Up</h3>
+                    <p>Create your account as a Student or Tutor. It's fast, secure, and simple.</p>
+                </div>
+                <a href="{% url 'users:signup_selection' %}" class="step-card-link">Get Started</a>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-card-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <div class="step-card-details">
+                    <h3>2. Choose a Plan</h3>
+                    <p>Pick from a Free Trial, Once-Off Session, or a Subscription plan that fits your needs.</p>
+                </div>
+                <a href="{% url 'pages:pricing' %}" class="step-card-link">View Pricing</a>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-card-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <div class="step-card-details">
+                    <h3>3. Make Payment (For Students)</h3>
+                    <p>Secure your spot by paying for your selected plan. Payments are 100% secure.</p>
+                </div>
+                <a href="#" class="step-card-link">Proceed to Payment</a>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-card">
+                <div class="step-card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="step-card-details">
+                    <h3>4. Payment Confirmation</h3>
+                    <p>Once payment is complete, you'll receive an email confirmation with all the details.</p>
+                </div>
+                <a href="#" class="step-card-link">Check Your Email</a>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="step-card">
+                <div class="step-card-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="step-card-details">
+                    <h3>5. Book a Tutor</h3>
+                    <p>After confirmation, access your dashboard to book your preferred tutor and schedule lessons.</p>
+                </div>
+                <a href="{% url 'users:login' %}" class="step-card-link">Go to Dashboard</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Commercial Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@bmsi.com">brightmathsinstitute@gmail.com</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-whatsapp"> 069 855 0845</i></a>
+                </div>
+                <p>Address: 123 Education Lane, Learning City, Knowledge State</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'pages:index' %}">Home</a></li>
+                    <li><a href="{% url 'pages:pricing' %}">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe</h3>
+                <form action="#">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BMSI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include JS -->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>

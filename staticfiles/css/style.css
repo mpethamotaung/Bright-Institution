@@ -1,0 +1,245 @@
+/* Custom styles for the navbar buttons */
+.navbar .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+.navbar .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.navbar .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.navbar .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Card Styles */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Form Field Spacing */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Responsive Logo */
+img.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Footer Styles */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* General adjustments for the login page */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-image: url('../images/login_bg.png'); /* Add your background image */
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+}
+
+/* Specific adjustments for laptop screens (768px to 1200px) */
+@media (max-width: 1200px) {
+    .login-container {
+        max-width: 700px;  /* Reduce the container width on laptops */
+    }
+
+    footer {
+        position: relative;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .login-container {
+        max-width: 600px; /* Further reduce for medium-sized laptops */
+    }
+
+    .login-container .col-lg-6, .login-container .col-md-6 {
+        padding: 30px; /* Adjust padding for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        max-width: 500px; /* Even smaller on tablets */
+    }
+
+    footer {
+        margin-top: 30px;
+    }
+
+    .login-container .col-lg-6, .login-container .col-md-6 {
+        padding: 20px; /* Adjust padding inside the columns */
+    }
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        max-width: 100%; /* Full width on small devices */
+        margin: 10px; /* Add some margin */
+        border-radius: 10px; /* Reduce border radius */
+    }
+
+    footer {
+        margin-top: 20px;
+    }
+}
+
+
+
+/* Dashboard Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    z-index: 1000;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .nav-link {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #495057;
+    border-radius: 0.25rem;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 1rem;
+}
+
+.sidebar .nav-link i {
+    font-size: 1.5rem;
+    color: black;
+}
+
+.sidebar .nav-link .link-text {
+    font-size: 1rem;
+    opacity: 0;
+    margin-left: 10px;
+    transition: opacity 0.3s ease;
+    display: inline-block;
+}
+
+.sidebar .nav-link:hover .link-text {
+    opacity: 1;
+}
+
+/* Adjust the main content area to account for the fixed sidebar */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar .nav-link .link-text {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        min-height: 100vh;
+    }
+
+    .sidebar .nav-link .link-text {
+        display: inline;
+    }
+
+    .main-content {
+        margin-left: 250px;
+    }
+}
+
+/* Main content padding on smaller screens */
+@media (max-width: 576px) {
+    .main-content {
+        padding: 15px;
+    }
+}
+
+/* Card and Modal Adjustments */
+.card-title {
+    font-weight: 500;
+}
+
+@media (max-width: 575px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 1rem;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+/* Ensure full height of container including footer */
+.container-fluid {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+}
+
+.row.flex-grow-1 {
+    flex-grow: 1;
+}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">My Bookings</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.date }} at {{ booking.time }} with {{ booking.tutor.user.username }} ({{ booking.subject }})</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Explore the Mathematics and Science courses offered at BMSI.">
+    <title>Courses | BMSI</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <!--Header Content-->
+    <header>
+        <nav class="navbar">
+            <div class="brand-container">
+                <img src="{% static 'images/logo.png' %}" alt="BMSI Logo" class="logo">
+                <h1><a href="{% url 'pages:index' %}" class="brand-name">BMSI</a></h1>
+            </div>
+            <button class="navbar-toggler" id="navbar-toggler" aria-label="Toggle Navigation">
+                &#9776; 
+            </button>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="{% url 'pages:pricing' %}" class="nav-link">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}" class="nav-link">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}" class="nav-link">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}" class="nav-link">About Us</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" class="profile-link">Dashboard</a></li>
+                    <li>
+                        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn-link logout-link">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li><a href="/users/login/" class="login-link">Login</a></li>
+                    <li><a href="{% url 'users:signup_selection' %}" class="get-started-link">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Courses Hero Section -->
+        <section class="courses-hero">
+            <div class="courses-hero-container">
+                <h1>Explore Our Courses</h1>
+                <p>At BMSI, we offer comprehensive courses to help you excel in Mathematics and Science.</p>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses-section">
+            <div class="courses-container">
+                <!-- Mathematics Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="{% static 'images/Maths.jpg' %}" alt="Mathematics Course">
+                    </div>
+                    <div class="course-content">
+                        <h3>Mathematics</h3>
+                        <p>Our Mathematics course covers algebra, calculus, geometry, and more, helping you master critical thinking and problem-solving skills.</p>
+                        <a href="#" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- Science Course -->
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="{% static 'images/Science.jpg' %}" alt="Science Course">
+                    </div>
+                    <div class="course-content">
+                        <h3>Science</h3>
+                        <p>Our Science course spans biology, chemistry, physics, and environmental science, giving you a solid foundation in scientific principles.</p>
+                        <a href="#" class="cta-button">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Commercial Footer -->
+    <footer class="commercial-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:info@bmsi.com">brightmathsinstitute@gmail.com</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-whatsapp"> 069 855 0845</i></a>
+                </div>
+                <p>Address: 123 Education Lane, Learning City, Knowledge State</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="{% url 'pages:index' %}">Home</a></li>
+                    <li><a href="{% url 'pages:pricing' %}">Pricing</a></li>
+                    <li><a href="{% url 'pages:booking' %}">Booking</a></li>
+                    <li><a href="{% url 'pages:courses' %}">Courses</a></li>
+                    <li><a href="{% url 'pages:about' %}">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Subscribe</h3>
+                <form action="#">
+                    <input type="email" placeholder="Your Email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 BMSI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Include JS -->
+    <script src="{% static 'js/script.js' %}" async defer></script>
+</body>
+</html>
